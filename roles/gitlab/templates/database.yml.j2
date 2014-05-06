@@ -2,12 +2,12 @@
 # PRODUCTION
 #
 production:
-  adapter: postgresql
-  encoding: unicode
+  adapter: mysql2
+  encoding: UTF8
   database: gitlabhq_production
   pool: 10
-  username: $gitlabUser
-  password: $db_password
+  username: {{ gitlabUser }}
+  password: {{ db_password }}
   # host: localhost
   # port: 5432 
   # socket: /tmp/postgresql.sock

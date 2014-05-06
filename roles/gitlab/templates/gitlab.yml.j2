@@ -15,7 +15,7 @@ production: &base
   ## GitLab settings
   gitlab:
     ## Web server settings
-    host: $gitlabFQDN
+    host: {{ gitlabFQDN }}
     port: 80
     https: false
 
@@ -180,9 +180,9 @@ production: &base
     # google_analytics_id: '_your_tracking_id'
 
     ## Text under sign-in page (Markdown enabled)
-    # sign_in_text: |
-    #   ![Company Logo](http://www.companydomain.com/logo.png)
-    #   [Learn more about CompanyName](http://www.companydomain.com/)
+    sign_in_text: |
+       ![Company Logo](http://cdn.presslabs.com/wp-content/themes/presslabs-theme/img/logo_header.png)
+       [Learn more about Presslabs](http://www.presslabs.com/)
 
 development:
   <<: *base

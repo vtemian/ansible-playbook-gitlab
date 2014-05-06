@@ -1,0 +1,36 @@
+---
+# need LC_ALL="en_GB.utf8"
+- name: Install Mysql
+  apt: name={{ item }} state=present update_cache=yes cache_valid_time=900
+  with_items:
+    - python
+    - mysql-server
+    - libmysqlclient-dev
+    - python-mysqldb
+  tags:
+    - mysql
+    - database
+
+- name: Start Mysql
+  service: name=mysql state=started
+  tags:
+    - mysql
+    - database
+
+- name: Create mysql database
+  mysql_db: name=gitlabhq_production state=present
+
+- name: Grant mysql accesss
+  mysql_user: name={{ gitlabUser }} host={{ item }}
+    password={{ db_password }}
+    priv=gitlabhq_production.*:ALL state=present
+  with_items:
+    - localhost
+    - 127.0.0.1
+    - ::1
+  tags:
+    - mysql
+    - database
+
+- name: Copy .my.cnf file with root pasword
+  template: src=my.cnf.j2 dest=/home/vagrant/.my.cnf owner=vagrant mode=0600
