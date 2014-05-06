@@ -1,3 +1,4 @@
 ---
-gitlabFQDN: 127.0.0.1
+gitlabFQDN: localhost
 gitlabUser: git
+db_password: my_awesome_db_pass
